@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE | Sobre Nós</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .about-hero {
+            background-color: var(--surface-color);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--surface-color);
+            border-radius: 4px;
+            transition: var(--transition-normal);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">LUXE<span>.</span></a>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="products.html" class="nav-link">Produtos</a></li>
+                <li><a href="about.html" class="nav-link active">Sobre</a></li>
+                <li><a href="contact.html" class="nav-link">Contato</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="#" class="nav-icon"><i class="fas fa-search"></i></a>
+                <a href="auth.html" class="nav-icon"><i class="fas fa-user"></i></a>
+                <a href="checkout.html" class="nav-icon"><i class="fas fa-shopping-bag"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <header class="about-hero">
+        <div class="container animate-slide-up">
+            <h1 class="text-gradient-gold">Nossa História</h1>
+            <p style="max-width: 600px; margin: 20px auto 0;">Redefinindo o luxo moderno através de design atemporal e
+                qualidade incomparável.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="about-content">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+                    alt="Interior da Loja" class="about-img animate-slide-up">
+                <div class="animate-slide-up" style="animation-delay: 0.2s;">
+                    <h2 class="section-title" style="text-align: left;">A Essência LUXE</h2>
+                    <p style="margin-bottom: 20px; color: var(--text-light); line-height: 1.8;">
+                        Fundada em 2024, a LUXE nasceu do desejo de oferecer uma curadoria de moda que transcende
+                        tendências passageiras. Acreditamos que o verdadeiro luxo reside na atenção aos detalhes, na
+                        escolha de materiais nobres e na experiência de compra excepcional.
+                    </p>
+                    <p style="color: var(--text-light); line-height: 1.8;">
+                        Nossa missão é inspirar confiança e sofisticação em cada cliente. Trabalhamos com designers
+                        visionários para trazer peças que não são apenas roupas ou acessórios, mas expressões de arte e
+                        personalidade.
+                    </p>
+                </div>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-gem value-icon"></i>
+                    <h3>Qualidade Premium</h3>
+                    <p class="text-light">Materiais selecionados e acabamento impecável em cada peça.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-star value-icon"></i>
+                    <h3>Exclusividade</h3>
+                    <p class="text-light">Coleções limitadas e designs únicos para você se destacar.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-heart value-icon"></i>
+                    <h3>Experiência</h3>
+                    <p class="text-light">Atendimento personalizado e focado na sua satisfação total.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LUXE<span>.</span></h3>
+                    <p>Sua loja de moda premium. Qualidade e estilo em cada detalhe.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="products.html">Produtos</a></li>
+                        <li><a href="auth.html">Minha Conta</a></li>
+                        <li><a href="checkout.html">Carrinho</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contato@luxe.com.br</li>
+                        <li><i class="fas fa-phone"></i> (11) 99999-9999</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LUXE. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

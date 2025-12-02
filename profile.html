@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE | Minha Conta</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .profile-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
+            padding: 40px 0;
+            min-height: 600px;
+        }
+
+        .profile-sidebar {
+            background-color: var(--surface-color);
+            padding: 30px 20px;
+            border-radius: 4px;
+            height: fit-content;
+        }
+
+        .profile-nav {
+            list-style: none;
+        }
+
+        .profile-nav li {
+            margin-bottom: 15px;
+        }
+
+        .profile-nav a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition-fast);
+            border-radius: 4px;
+        }
+
+        .profile-nav a:hover,
+        .profile-nav a.active {
+            background-color: #f9f9f9;
+            color: var(--primary-gold);
+        }
+
+        .profile-content {
+            background-color: var(--surface-color);
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .order-card {
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-delivered {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status-processing {
+            background-color: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .wishlist-item {
+            border: 1px solid #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .wishlist-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .wishlist-details {
+            padding: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">LUXE<span>.</span></a>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="products.html" class="nav-link">Produtos</a></li>
+                <li><a href="about.html" class="nav-link">Sobre</a></li>
+                <li><a href="contact.html" class="nav-link">Contato</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="#" class="nav-icon"><i class="fas fa-search"></i></a>
+                <a href="auth.html" class="nav-icon active"><i class="fas fa-user"></i></a>
+                <a href="checkout.html" class="nav-icon"><i class="fas fa-shopping-bag"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Content -->
+    <section class="section-padding" style="margin-top: 60px;">
+        <div class="container">
+            <div class="profile-container">
+                <!-- Sidebar -->
+                <aside class="profile-sidebar">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <div
+                            style="width: 80px; height: 80px; background-color: #eee; border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--text-light);">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Olá, Cliente</h3>
+                        <p class="text-light">contato@luxe.com.br</p>
+                    </div>
+
+                    <ul class="profile-nav">
+                        <li><a href="#" class="active" onclick="showSection('orders')"><i class="fas fa-box"></i> Meus
+                                Pedidos</a></li>
+                        <li><a href="#" onclick="showSection('wishlist')"><i class="fas fa-heart"></i> Lista de
+                                Desejos</a></li>
+                        <li><a href="#" onclick="showSection('address')"><i class="fas fa-map-marker-alt"></i>
+                                Endereços</a></li>
+                        <li><a href="#" onclick="showSection('account')"><i class="fas fa-user-cog"></i> Dados
+                                Pessoais</a></li>
+                        <li><a href="index.html" style="color: var(--error-color);"><i class="fas fa-sign-out-alt"></i>
+                                Sair</a></li>
+                    </ul>
+                </aside>
+
+                <!-- Content Area -->
+                <main class="profile-content">
+                    <!-- Orders Section -->
+                    <div id="orders" class="content-section active">
+                        <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Meus Pedidos</h2>
+
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div>
+                                    <h4>Pedido #12345</h4>
+                                    <p class="text-light">Realizado em 20/11/2024</p>
+                                </div>
+                                <span class="order-status status-delivered">Entregue</span>
+                            </div>
+                            <div style="display: flex; gap: 15px;">
+                                <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60"
+                                    style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                                <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60"
+                                    style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                            </div>
+                            <div style="margin-top: 15px; text-align: right;">
+                                <p class="text-gold" style="font-weight: 700;">Total: R$ 659,00</p>
+                            </div>
+                        </div>
+
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div>
+                                    <h4>Pedido #12344</h4>
+                                    <p class="text-light">Realizado em 15/10/2024</p>
+                                </div>
+                                <span class="order-status status-delivered">Entregue</span>
+                            </div>
+                            <div style="display: flex; gap: 15px;">
+                                <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60"
+                                    style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                            </div>
+                            <div style="margin-top: 15px; text-align: right;">
+                                <p class="text-gold" style="font-weight: 700;">Total: R$ 890,00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wishlist Section -->
+                    <div id="wishlist" class="content-section">
+                        <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Lista de Desejos</h2>
+                        <div class="wishlist-grid">
+                            <div class="wishlist-item">
+                                <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                    class="wishlist-img" alt="Produto">
+                                <button class="btn-icon btn-remove"
+                                    style="position: absolute; top: 10px; right: 10px; background: white; color: var(--error-color);"><i
+                                        class="fas fa-trash"></i></button>
+                                <div class="wishlist-details">
+                                    <h4>Sapato Oxford Elite</h4>
+                                    <p class="text-gold">R$ 360,00</p>
+                                    <button class="btn btn-gold full-width"
+                                        style="margin-top: 10px; font-size: 0.8rem;">Adicionar ao Carrinho</button>
+                                </div>
+                            </div>
+                            <div class="wishlist-item">
+                                <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                    class="wishlist-img" alt="Produto">
+                                <button class="btn-icon btn-remove"
+                                    style="position: absolute; top: 10px; right: 10px; background: white; color: var(--error-color);"><i
+                                        class="fas fa-trash"></i></button>
+                                <div class="wishlist-details">
+                                    <h4>Bolsa Couro Legítimo</h4>
+                                    <p class="text-gold">R$ 890,00</p>
+                                    <button class="btn btn-gold full-width"
+                                        style="margin-top: 10px; font-size: 0.8rem;">Adicionar ao Carrinho</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Address Section -->
+                    <div id="address" class="content-section">
+                        <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Endereços</h2>
+                        <p class="text-light">Nenhum endereço cadastrado.</p>
+                    </div>
+
+                    <!-- Account Section -->
+                    <div id="account" class="content-section">
+                        <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Dados Pessoais</h2>
+                        <form>
+                            <div class="form-group">
+                                <label>Nome Completo</label>
+                                <input type="text" class="full-width" value="Cliente Exemplo">
+                            </div>
+                            <div class="form-group">
+                                <label>E-mail</label>
+                                <input type="email" class="full-width" value="contato@luxe.com.br" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Telefone</label>
+                                <input type="text" class="full-width" value="(11) 99999-9999">
+                            </div>
+                            <button type="submit" class="btn btn-gold hover-lift">Salvar Alterações</button>
+                        </form>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LUXE<span>.</span></h3>
+                    <p>Sua loja de moda premium. Qualidade e estilo em cada detalhe.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="products.html">Produtos</a></li>
+                        <li><a href="auth.html">Minha Conta</a></li>
+                        <li><a href="checkout.html">Carrinho</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contato@luxe.com.br</li>
+                        <li><i class="fas fa-phone"></i> (11) 99999-9999</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LUXE. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update nav active state
+            document.querySelectorAll('.profile-nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

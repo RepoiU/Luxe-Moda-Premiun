@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE | Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .auth-container {
+            max-width: 400px;
+            margin: 80px auto;
+            background-color: var(--surface-color);
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-light);
+            transition: var(--transition-fast);
+        }
+
+        .auth-tab.active {
+            color: var(--primary-gold);
+            border-bottom: 2px solid var(--primary-gold);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">LUXE<span>.</span></a>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="products.html" class="nav-link">Produtos</a></li>
+                <li><a href="about.html" class="nav-link">Sobre</a></li>
+                <li><a href="contact.html" class="nav-link">Contato</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="#" class="nav-icon"><i class="fas fa-search"></i></a>
+                <a href="auth.html" class="nav-icon active"><i class="fas fa-user"></i></a>
+                <a href="checkout.html" class="nav-icon"><i class="fas fa-shopping-bag"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Auth Content -->
+    <div class="container">
+        <div class="auth-container">
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="login-tab">Entrar</div>
+                <div class="auth-tab" id="register-tab">Cadastrar</div>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form active" id="login-form">
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" class="full-width" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" class="full-width" required>
+                </div>
+                <button type="submit" class="btn btn-gold full-width hover-lift">Entrar</button>
+                <p style="text-align: center; margin-top: 15px; font-size: 0.9rem;">
+                    <a href="#" class="link-underline">Esqueceu sua senha?</a>
+                </p>
+            </form>
+
+            <!-- Register Form -->
+            <form class="auth-form" id="register-form">
+                <div class="form-group">
+                    <label>Nome Completo</label>
+                    <input type="text" class="full-width" required>
+                </div>
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" class="full-width" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" class="full-width" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirmar Senha</label>
+                    <input type="password" class="full-width" required>
+                </div>
+                <button type="submit" class="btn btn-gold full-width hover-lift">Criar Conta</button>
+            </form>
+
+</html>
